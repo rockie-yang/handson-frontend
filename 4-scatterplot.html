@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/jquery-2.1.4.js" charset="utf-8"></script>
+  <!-- bootstrap js requires jquery -->
+  <script src="js/bootstrap.js"></script>
+  <script src="js/d3.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <script>
+	var dataset = [];
+    for (var i =0; i < 125; i++) {
+      var x = Math.floor(Math.random() * 250);
+      var y = Math.floor(Math.random() * 250);
+      var r = Math.ceil(Math.random() * 15);
+      dataset.push([x, y, r]);
+    }
+
+    // var all = d3.select("body").selectAll("div");
+    // var data = all.data(dataset);
+    // var enter = data.enter();
+    // var append= enter.append("div");
+    // append.attr("class", "bar");
+
+    // append.style("height", function(d){
+    //   return d;
+    // })
+
+	var height = 500;
+	var width = 500;
+	
+    var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
+
+    svg.selectAll("circle").data(dataset).enter().append("circle")
+    	.attr("cx", function (d, i) {
+    		return d[0] * 2;
+    	})
+    	.attr("cy", function (d, i){
+    		return d[1] * 2;
+    	})
+    	.attr("r", function (d, i) {
+    		return d[2] + "px";
+    	})
+    	.attr("fill", function(d){
+    		return "rgb(0, " + d[0] + ", " + d[1] + ")";
+    	});
+
+  </script>
+</body>
+
+</html>
