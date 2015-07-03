@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/jquery-2.1.4.js" charset="utf-8"></script>
+  <!-- bootstrap js requires jquery -->
+  <script src="js/bootstrap.js"></script>
+  <script src="js/d3.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <script>
+  	var width = 500;
+	var height = 500;
+
+	var svg = d3.select("body").append("svg")
+		.attr("width", width)
+		.attr("height", height);
+		
+  	var path = d3.geo.path();
+  	d3.json("us-states.json", function(json) {
+  		svg.selectAll("path")
+  			.data(json.features).enter()
+  			.append("path")
+  			.attr("d", path)
+  	})
+  </script>
+</body>
+
+</html>
