@@ -8,6 +8,20 @@
 <body>
     <div class="container">
         <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-default" id="btn1">Button1</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-default" id="btn2">Button2</button>
+            </div>
+            <div class="col-sm-3">
+                <div class="btn btn-default" id="btn3">Button3</div>
+            </div>
+            <div class="col-sm-3">
+                <div class="btn btn-default" id="btn4">Button4</div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-3" id="col1">
                 <h3><a href="#">First</a></h3>
                 <p id="para1">Make a set of buttons appear vertically stacked rather than horizontally. Split button dropdowns are not supported here.
@@ -15,44 +29,72 @@
             </div>
             <div class="col-md-3" id="col2">
                 <h3><a href="#">Handling borders</a></h3>
-                <p> Due to the specific HTML and CSS used to justify buttons (namely display: table-cell), the borders between them are doubled. In regular button groups, margin-left: -1px is used to stack the borders instead of removing them. However, margin doesn't work with display: table-cell. As a result, depending on your customizations to Bootstrap, you may wish to remove or re-color the borders.
+                <p id="para2"> Due to the specific HTML and CSS used to justify buttons (namely display: table-cell), the borders between them are doubled. In regular button groups, margin-left: -1px is used to stack the borders instead of removing them. However, margin doesn't work with display: table-cell. As a result, depending on your customizations to Bootstrap, you may wish to remove or re-color the borders.
                 </p>
                 <a href="#" class="btn">Read More</a>
             </div>
             <div class="col-md-3" id="col3">
                 <h3><a href="#">stretch</a></h3>
-                <p>
+                <p id="para3">
                     Make a group of buttons stretch at equal sizes to span the entire width of its parent. Also works with button dropdowns within the button group.
                 </p>
-                <a href="#" class="btn">Read More</a>
+                <a href="#" class="btn myButton">Read More</a>
             </div>
             <div class="col-md-3" id="col4">
                 <h3><a href="#">Avaiable</a></h3>
-                <p>
-                    we got more spaces, 
+                <p id="para4">
+                    we got more spaces,
                 </p>
                 <a href="#" class="btn btn-info">contact us</a>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-    <!-- // <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script> -->
-    <!-- // <script type="text/javascript" src="../bower_components/jquery-migrate/jquery-migrate.js"></script> -->
-    <!-- // <script type="text/javascript" src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script> -->
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- // <script type="text/javascript" src="../bower_components/angular/angular.js"></script> -->
-    <!-- // <script type="text/javascript" src="../bower_components/d3/d3.js"></script> -->
-    <!-- // <script type="text/javascript" src="../bower_components/underscore/underscore.js"></script> -->
-    <!-- // <script type="text/javascript" src="../bower_components/backbone/backbone.js"></script> -->
     <script type="text/javascript">
-        $(function(){
-            // $("#col1").hide(600).show(600).delay(1000).slideUp(500).slideDown('slow');
-            // $("#col2").slideToggle('slow').slideToggle('fast')
-            // $("#col1").fadeOut('slow').fadeIn("slow");
-            // $("#para1").css({
-            //     color: 'red';
-            });
+    // we can use two ways two write function
+    // they all mean when the whole document is loaded, execute the function
+    // 1. $(document).ready(function() {})
+    $(document).ready(function() {
+        $("#btn1").on('click', function(event) {
+            $("#col1").toggle('slow');
+            // $("#col1").fadeToggle('slow');
+        });
+
+    })
+
+    // 2. $(function(){})
+    $(function() {
+        // jquery always has two parts, 
+        // the first part is select the object
+        // the second part is doing some action
+        // and actions could be changed
+        //
+        // there are three ways to select objects
+        // 1. select all type, without any prefix
+        //    $('body') means select the body
+        //    $('button') means select all buttons
+        // $("body").css({'background-color': 'grey'})
+        $('button').css({
+            'background-color': 'grey'
         })
+
+        // 
+        // 2. select by the class, with prefix .
+        //    #('myButton') means select all objects with class myButton
+        $('.myButton').css({
+            'background-color': 'AliceBlue'
+        });
+
+        // 3. select by the id, with prefix #
+        $("#col1").hide(600).show(600).delay(1000).slideUp(500).slideDown('slow');
+        $("#col2").slideToggle('slow').slideToggle('fast')
+        $("#col1").fadeOut('slow').fadeIn("slow");
+        $("#para1").css({
+            color: 'red',
+            'font-weight': 'bold'
+        });
+    })
     </script>
 </body>
 
