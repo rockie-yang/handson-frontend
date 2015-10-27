@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+    div.bar {
+        display: inline-block;
+        width: 20px;
+        height: 75px;
+        background-color: teal;
+        margin-right: 2px;
+    }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bower_components/d3/d3.js"></script>
+    <script>
+    // var dataset = [5, 10, 15, 20, 25];
+    var dataset = [];
+    for (var i = 0; i < 25; i++) {
+        var num = Math.floor(Math.random() * 30);
+        dataset.push(num);
+    }
+
+    // var all = d3.select("body").selectAll("div");
+    // var data = all.data(dataset);
+    // var enter = data.enter();
+    // var append= enter.append("div");
+    // append.attr("class", "bar");
+
+    // append.style("height", function(d){
+    //   return d;
+    // })
+
+    d3.select("body").selectAll("div")
+        .data(dataset).enter().append("div").attr("class", "bar").style("height", function(d) {
+            var height = d * 3;
+            return height + "px";
+        })
+
+    // parameter data is a place holder, it can be any name
+    // .text function will apply on every element, the element will be data
+    // appendp.text(function (data) {
+    //   return "just a number " + data;
+    // });
+
+    // appendp.style("color", function(d) {
+    //   if (d > 10) {
+    //     return "red";
+    //   }
+    //   else {
+    //     return "green";
+    //   }
+
+    // })
+    </script>
+</body>
+
+</html>

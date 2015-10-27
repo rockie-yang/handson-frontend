@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bower_components/d3/d3.js"></script>
+    <script>
+    var dataset = [];
+    for (var i = 0; i < 25; i++) {
+        var num = Math.floor(Math.random() * 25);
+        dataset.push(num);
+    }
+
+    // var all = d3.select("body").selectAll("div");
+    // var data = all.data(dataset);
+    // var enter = data.enter();
+    // var append= enter.append("div");
+    // append.attr("class", "bar");
+
+    // append.style("height", function(d){
+    //   return d;
+    // })
+
+    var height = 100;
+    var width = 500;
+    var barPadding = 1;
+    var barWidth = width / dataset.length - barPadding;
+
+    var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
+
+    svg.selectAll("rect").data(dataset).enter().append("rect")
+        .attr("x", function(d, i) {
+            return i * (barWidth + barPadding);
+        })
+        .attr("y", function(d) {
+            return height - d * 3;
+        })
+        .attr("width", barWidth)
+        .attr("height", function(d) {
+            return d * 3;
+        })
+        .attr("fill", function(d) {
+            return "rgb(0, " + d * 10 + ", " + d * 10 + ")";
+        });
+
+    svg.selectAll("text").data(dataset).enter().append("text")
+        .text(function(d) {
+            return d;
+        })
+        .attr("x", function(d, i) {
+            return i * (barWidth + barPadding);
+        })
+        .attr("y", function(d) {
+            return height - d * 3 + 20;
+        })
+        .attr("fill", "white");
+    </script>
+</body>
+
+</html>
