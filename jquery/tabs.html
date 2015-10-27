@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+    body {
+        padding-top: 10px;
+    }
+    
+    .list-panel-item:first-child {
+        /*the left side need be a straight line*/
+        border-top-left-radius: 0px; 
+    }
+    
+    .nav-tabs {
+        /*don't add bottom*/
+        border-bottom: 0px solid #ddd;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="tab-panel active" rel="panel1"><a href="#">Home</a></li>
+                    <li role="presentation" class="tab-panel" rel='panel2'><a href="#">Profile</a></li>
+                    <li role="presentation" class="tab-panel" rel='panel3'><a href="#">Messages</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="list-group active" id="panel1">
+                    <li class="list-group-item list-panel-item" id="1">1</li>
+                    <li class="list-group-item list-panel-item" id="2">2</li>
+                    <li class="list-group-item list-panel-item" id="3">3</li>
+                    <li class="list-group-item list-panel-item" id="4">4</li>
+                </ul>
+                <ul class="list-group" id="panel2" style='display: none'>
+                    <li class="list-group-item list-panel-item" id="one">one</li>
+                    <li class="list-group-item" id="two">two</li>
+                    <li class="list-group-item" id="three">three</li>
+                    <li class="list-group-item" id="four">four</li>
+                </ul>
+                <ul class="list-group" id='panel3' style='display: none'>
+                    <li class="list-group-item list-panel-item active" id="ett">ett</li>
+                    <li class="list-group-item" id="två" data-coorelate-id='#3'>två</li>
+                    <li class="list-group-item" id="tre">tre</li>
+                    <li class="list-group-item" id="fyra">fyra</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript">
+    // we can use two ways two write function
+    // they all mean when the whole document is loaded, execute the function
+    // 1. $(document).ready(function() {})
+    $(document).ready(function() {
+        $(".tab-panel").on('click', function(event) {
+            // get rel
+            var rel = $(this).attr('rel');
+
+            // get the current activeId
+            var activeId = $('.list-group').filter('.active').attr('id');
+
+            // only when the current the wanted tab is different
+            if (rel != activeId) {
+                // remove the active from the current tab
+                $('.tab-panel').filter('.active').removeClass('active');
+                // add active for the wanted tab
+                $(this).addClass('active');
+
+                var active = $('#' + activeId);
+                var tobe_active = $('#' + rel);
+
+                active.removeClass('active');
+
+                // slideUp the previous active
+                // after that finished, slideDown the wanted tab
+                active.slideUp('slow', function() {
+                    tobe_active.slideDown('slow');
+                    tobe_active.addClass('active')
+                })
+            }
+        });
+
+    })
+    </script>
+</body>
+
+</html>
