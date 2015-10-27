@@ -7,32 +7,32 @@
     body {
         padding-top: 10px;
     }
-    #slider{
-        width: 820px;
-        height: 533px;
+    
+    #slider {
+        width: 720px;
+        height: 480px;
         overflow: hidden;
     }
-
+    
     #slider .slides {
         display: block;
         width: 6000px;
-        height: 533px;
+        height: 6533px;
         margin: 0;
         padding: 0;
     }
-
-    #slider .slide {
-        float: left;
-        list-style-type: none;
-        width: 820px;
-        height: 533px;
-    }
     
-    .photo {
+    #slider .slide {
+        float: bottom;
+        list-style-type: none;
+        width: 720px;
+        height: 480px;
+    }
+    /*.photo {
         width: 800px;
         height: 533px;
     }
-    
+    */
     </style>
 </head>
 
@@ -42,87 +42,53 @@
             <h1>Fireworks</h1>
         </div>
         <div id="slider">
-                <ul id="slides" width='800'>
-                    <li class="slide"><img src="../img/Fireworks1.jpg" class="photo"></li>
-                    <li class="slide"><img src="../img/Fireworks2.jpg" class="photo"></li>
-                </ul>
-            </div>
+            <ul class="slides">
+                <li class="slide"><img src="../img/Fireworks1.jpg" class="photo"></li>
+                <li class="slide"><img src="../img/Fireworks2.jpg" class="photo"></li>
+                <li class="slide"><img src="../img/Fireworks3.jpg" class="photo"></li>
+                <li class="slide"><img src="../img/Fireworks4.jpg" class="photo"></li>
+                <li class="slide"><img src="../img/Fireworks5.jpg" class="photo"></li>
+                <li class="slide"><img src="../img/Fireworks6.jpg" class="photo"></li>
+                <li class="slide"><img src="../img/Fireworks7.jpg" class="photo"></li>
+            </ul>
         </div>
-        
+    </div>
     </div>
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript">
-    // we can use two ways two write function
-    // they all mean when the whole document is loaded, execute the function
-    // 1. $(document).ready(function() {})
-    $(document).ready(function() {
-        $("#btn1").on('click', function(event) {
-            $("#col1").toggle('slow');
-            // $("#col1").fadeToggle('slow');
-        });
-
-    })
-
-    // 2. $(function(){})
     $(function() {
-        var assert = function(actual, expected, msg) {
-            if (actual != expected)
-                console.log(msg, actual + " != " + expected)
+        var marginShift = '-=480px';
+        var animateSpeed = 1000;
+        var pauseTime = 4000;
+        var index = 0;
+        var $slideContainer = $('.slides');
+        var $slides = $slideContainer.find('.slide');
+
+        var interval;
+
+        var resumeAnimate = function() {
+            interval = setInterval(function() {
+                $slideContainer.animate({
+                    'margin-top': marginShift
+                }, animateSpeed, function() {
+                    index += 1;
+                    if (index === $slides.length) {
+                        index = 1;
+                        $slideContainer.css({
+                            'margin-top': '0px'
+                        });
+                    }
+                })
+            }, pauseTime)
         }
 
-        assert($('#1').next().text(), '2', "1's next should be 2");
-        assert($('#1').next().next().text(), '3', "1's next's next should be 3");
-        assert($('#1').next().prev().text(), '1', "1's next's prev should be itself 1");
+        var pauseAnimate = function() {
+            clearInterval(interval);
+        }
 
-        assert($('#2').prev().text(), '1', "2's prev should be 2");
-
-        assert($('#2').siblings().size(), 4, "2 should have 4 siblings, 1 3 4 5");
-        assert($('#2').siblings().first().text(), '1', "2's first sibling should be 1");
-        assert($('#2').siblings().eq(0).text(), '1', "2's first sibling should be 1");
-
-        // #2's last siblings is #5
-        // #5's children is the ul
-        // ul's children are one,two,three,four,five
-        assert($('#2').siblings().last().children().children().first().text(), '1', "2's last sibling's children's first child should be one");
-
-
-        assert($('#一').next().text(), '二', "一's next should be 二");
-        assert($('#ett').next().text(), 'två', "ett's next should be två");
-
-        // there are two ul in the document
-        // first ul has children 1 2 3 4 5
-        assert($('ul:first').children().first().text(), '1', "the first child's text of ul in the document should be 1");
-
-        assert($('ul:last').children().first().text(), 'ett', "the last child's text of ul in the document should be ett");
-
-        // when the last ul's last child (一 二 三 四 五) on click
-        $('ul:last').children().last().on('click', function(event) {
-            // make the first ul's first child special
-            $('ul:first').children().first().addClass('special');
-        })
-
-        // when click on first ul
-        $('ul:first').on('click', function(event) {
-            var all_li = $(this).find('li');
-            var has_special_class = all_li.filter('.special');
-            has_special_class.removeClass('special')
-        });
-
-        // when the last ul's 2nd child (två) on click 
-        // 2nd? because the index start with 0
-        $('ul:last').children().eq(1).on('click', function(event) {
-            // remove all special inside the click
-            $(this).find('.special').removeClass('special');
-
-            // make the first ul's first child special
-            var dataCoorelateId = $(this).attr('data-coorelate-id');
-            $(dataCoorelateId).toggleClass('special');
-
-            var second_child = $('ul:first').children().eq(1);
-            second_child.addClass('disabled');
-        })
-
+        $slideContainer.on('mouseenter', pauseAnimate).on('mouseleave', resumeAnimate);
+        resumeAnimate();
     })
     </script>
 </body>
