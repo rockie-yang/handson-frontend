@@ -7,6 +7,14 @@
     body {
         padding-top: 10px;
     }
+    
+    .special {
+        background-color: red;
+    }
+    
+    .disabled {
+        background-color: grey;
+    }
     </style>
 </head>
 
@@ -16,16 +24,14 @@
             <div class="col-sm-4">
                 <ul class="list-group">
                     <li class="list-group-item" id="1">1</li>
-                    <li class="list-group-item" id="2">2</li>
+                    <li class="list-group-item center" id="2">2</li>
                     <li class="list-group-item" id="3">3</li>
-                    <li class="list-group-item" id="4">4</li>
-                    <li class="list-group-item" id="5">
+                    <li class="list-group-item" id="4">
                         <ul class="list-group">
                             <li class="list-group-item" id="one">one</li>
                             <li class="list-group-item" id="two">two</li>
                             <li class="list-group-item" id="three">three</li>
                             <li class="list-group-item" id="four">four</li>
-                            <li class="list-group-item" id="five">five</li>
                         </ul>
                     </li>
                 </ul>
@@ -36,16 +42,14 @@
             <div class="col-sm-3">
                 <ul class="list-group">
                     <li class="list-group-item active" id="ett">ett</li>
-                    <li class="list-group-item" id="två">två</li>
+                    <li class="list-group-item" id="två" data-coorelate-id='#3'>två</li>
                     <li class="list-group-item" id="tre">tre</li>
-                    <li class="list-group-item" id="fyra">fyra</li>
-                    <li class="list-group-item" id="fem">
+                    <li class="list-group-item" id="fyra">
                         <div class="list-group">
                             <a href="#" class="list-group-item active" id="一">一</a>
                             <a href="#" class="list-group-item" id="二">二</a>
                             <a href="#" class="list-group-item" id="三">三</a>
                             <a href="#" class="list-group-item" id="四">四</a>
-                            <a href="#" class="list-group-item" id="五">五</a>
                         </div>
                     </li>
                 </ul>
@@ -91,6 +95,40 @@
 
         assert($('#一').next().text(), '二', "一's next should be 二");
         assert($('#ett').next().text(), 'två', "ett's next should be två");
+
+        // there are two ul in the document
+        // first ul has children 1 2 3 4 5
+        assert($('ul:first').children().first().text(), '1', "the first child's text of ul in the document should be 1");
+
+        assert($('ul:last').children().first().text(), 'ett', "the last child's text of ul in the document should be ett");
+
+        // when the last ul's last child (一 二 三 四 五) on click
+        $('ul:last').children().last().on('click', function(event) {
+            // make the first ul's first child special
+            $('ul:first').children().first().addClass('special');
+        })
+
+        // when click on first ul
+        $('ul:first').on('click', function(event) {
+            var all_li = $(this).find('li');
+            var has_special_class = all_li.filter('.special');
+            has_special_class.removeClass('special')
+        });
+
+        // when the last ul's 2nd child (två) on click 
+        // 2nd? because the index start with 0
+        $('ul:last').children().eq(1).on('click', function(event) {
+            // remove all special inside the click
+            $(this).find('.special').removeClass('special');
+
+            // make the first ul's first child special
+            var dataCoorelateId = $(this).attr('data-coorelate-id');
+            $(dataCoorelateId).toggleClass('special');
+
+            var second_child = $('ul:first').children().eq(1);
+            second_child.addClass('disabled');
+        })
+
     })
     </script>
 </body>
