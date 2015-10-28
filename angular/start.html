@@ -21,16 +21,37 @@
                 </ul>
             </div>
         </div>
-        <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
-        <script type="text/javascript" src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-        <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-        <!-- 
-<script type="text/javascript" src="../bower_components/d3/d3.js"></script>
-<script type="text/javascript" src="../bower_components/backbone/backbone.js"></script>
-<script type="text/javascript" src="../bower_components/underscore/underscore.js"></script>
- -->
+    </div>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript">
+    // define an anonymous function and invoke it immediatly
+    // to avoid create any global variable
+    // it has to wrapped in a parenthess 
+    // so the simplest is (function(){}())
+    (function() {
+        var worker = function() {
+            var closer = "something"
+            var job1 = function() {
+                console.log('job1 ' + closer)
+            }
+            var job2 = function() {
+                console.log('job2 ' + closer)
+            }
+            return {
+                'job1': job1,
+                'job2': job2
+            }
+
+        }
+        var w = worker();
+        w.job1();
+        w.job2();
+    }())
+    </script>
 </body>
 
 </html>
