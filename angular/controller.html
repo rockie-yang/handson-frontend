@@ -1,0 +1,37 @@
+<html ng-app="app">
+
+<head>
+    <!-- to avoid Uncaught SyntaxError: Unexpected token ILLEGAL: -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+    body {
+        padding-top: 10px;
+    }
+    </style>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="controller.js"></script>
+</head>
+
+<body ng-controller="acontroller">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        888 / 44 = {{888 / 44}} </li>
+                    <li class="list-group-item">
+                        hello {{message}} </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+
+</html>
