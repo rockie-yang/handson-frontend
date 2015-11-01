@@ -1,0 +1,21 @@
+{
+  "name": "markdown",
+  "homepage": "https://github.com/rockie-yang/handson-frontend",
+  "authors": [
+    "Rockie Yang <eyouyan@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "strapdown": "*"
+  }
+}
