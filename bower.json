@@ -29,6 +29,7 @@
     "d3": "~3.5.6",
     "backbone": "~1.2.3",
     "underscore": "~1.8.3",
-    "jquery-migrate": "~1.2.1"
+    "jquery-migrate": "~1.2.1",
+    "strapdown": "*"
   }
 }

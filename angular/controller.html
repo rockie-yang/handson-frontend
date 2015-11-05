@@ -26,12 +26,27 @@
                         888 / 44 = {{888 / 44}} </li>
                     <li class="list-group-item">
                         hello {{message}} </li>
+                    <li class="list-group-item">
+                        <img ng-src="{{userProfile.avatar_url}}" width="100"> </li>
                 </ul>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-default">
+                        repositories
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-show="errorMsg">
+                            {{errorMsg}}
+                        </li>
+                        <li class="list-group-item" ng-repeat="repo in repos">
+                            {{repo.name}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    
-    
 </body>
 
 </html>
