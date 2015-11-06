@@ -48,26 +48,27 @@
 
 <body ng-app="pollApp" ng-controller="pollCtrl">
     <div class="container centered">
+        <h1>How do you like frontend dev</h1>
         <div class="row poll-row">
             <div class="col-xs-4 poll-option">
                 <button type="button" class="btn btn-block poll-option option1" 
                 	ng-show="options[1]" ng-click="vote(1)">
                     <h1>{{options[1].heading}}</h1>
-                    <p> {{options[1].text}}</p>
+                    <h2> {{options[1].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
                 <button type="button" class="btn btn-block poll-option option2" 
                 	ng-show="options[2]" ng-click="vote(2)">
                     <h1>{{options[2].heading}}</h1>
-                    <p> {{options[2].text}}</p>
+                    <h2> {{options[2].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
                 <button type="button" class="btn btn-block poll-option option3" 
                 	ng-show="options[3]" ng-click="vote(3)">
                     <h1>{{options[3].heading}}</h1>
-                    <p> {{options[3].text}}</p>
+                    <h2> {{options[3].text}}</h2>
                 </button>
             </div>
         </div>
@@ -76,21 +77,21 @@
                 <button type="button " class="btn btn-block poll-option option4" 
                 	ng-show="options[4]" ng-click="vote(4)">
                     <h1>{{options[4].heading}}</h1>
-                    <p> {{options[4].text}}</p>
+                    <h2> {{options[4].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
                 <button type="button" class="btn btn-block poll-option option5" 
                 	ng-show="options[5]" ng-click="vote(5)">
                     <h1>{{options[5].heading}}</h1>
-                    <p> {{options[5].text}}</p>
+                    <h2> {{options[5].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
                 <button type="button" class="btn btn-block poll-option option6" 
                 	ng-show="options[6]" ng-click="vote(6)">
                     <h1>{{options[6].heading}}</h1>
-                    <p> {{options[6].text}}</p>
+                    <h2> {{options[6].text}}</h2>
                 </button>
             </div>
         </div>

@@ -63,6 +63,8 @@
             }
 
         }
+
+        getOptions();
     }
 
     app.controller('pollCtrl', ['$scope', '$http', pollCtrlFun]);
