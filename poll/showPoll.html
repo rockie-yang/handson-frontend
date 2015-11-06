@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+    .centered {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .poll-row {
+        height: 50%;
+        margin-bottom: 30px;
+    }
+    
+    .poll-option {
+        height: 300px;
+    }
+    
+    .option1 {
+        background-color: #1f77b4;
+    }
+    
+    .option2 {
+        background-color: #ff7f0e;
+    }
+    
+    .option3 {
+        background-color: #2ca02c;
+    }
+    
+    .option4 {
+        background-color: #9467bd;
+    }
+    
+    .option5 {
+        background-color: #bcbd22;
+    }
+    
+    .option6 {
+        background-color: #17becf;
+    }
+    
+    div.bar {
+        display: inline-block;
+        width: 50px;
+        height: 200px;
+        background-color: teal;
+        margin-right: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container centered">
+        <div class="row poll-row" id="poll-result">
+        </div>
+    </div>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">
+    var dataset = [5, 10, 15, 20, 25, 8];
+    var c10 = d3.scale.category10();
+    var dbUrl = 'https://api.mongolab.com/api/1/databases/rockie_test';
+    var apiKey = 'Wq6LkbyEZjQJ5D-HY22jAH7XWM3T2M7z';
+    var optionsUrl = dbUrl + '/collections/options?apiKey=' + apiKey;
+    var votesUrl = dbUrl + '/collections/votes?apiKey=' + apiKey;
+
+    var updateGraph = function(votes) {
+        var highestVote = 0;
+        for (var i in votes) {
+            if (votes[i] > highestVote) {
+                highestVote = votes[i]
+            }
+        }
+
+        var rate = 300 / highestVote
+        d3.select('#poll-result').selectAll("div")
+            .data(votes).enter().append("div").attr("class", "bar").style("height", 0)
+            .transition().duration(3000)
+            .delay(function(d, i) {
+                return i * 300;
+            })
+            .style("height", function(d) {
+                var height = d * rate;
+                height = height > 0 ? height : 3;
+                return height + "px";
+            })
+            .style('background-color', function(d, i) {
+                return c10(i);
+            })
+    }
+
+    d3.json(votesUrl, function(error, data) {
+        var votes = [0, 0, 0, 0, 0, 0];
+
+        for (var i in data) {
+            var vote = data[i].vote - 1;
+            votes[vote] += 1;
+        }
+
+        console.log(votes);
+        updateGraph(votes);
+    })
+    </script>
+</body>
+
+</html>
