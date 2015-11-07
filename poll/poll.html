@@ -3,12 +3,18 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="./pollCtrl.js"></script>
     <style>
     .centered {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
     }
     
     .poll-row {
@@ -51,22 +57,19 @@
         <h1>How do you like frontend dev</h1>
         <div class="row poll-row">
             <div class="col-xs-4 poll-option">
-                <button type="button" class="btn btn-block poll-option option1" 
-                	ng-show="options[1]" ng-click="vote(1)">
+                <button type="button" class="btn btn-block poll-option option1" ng-show="options[1]" ng-click="vote(1)">
                     <h1>{{options[1].heading}}</h1>
                     <h2> {{options[1].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
-                <button type="button" class="btn btn-block poll-option option2" 
-                	ng-show="options[2]" ng-click="vote(2)">
+                <button type="button" class="btn btn-block poll-option option2" ng-show="options[2]" ng-click="vote(2)">
                     <h1>{{options[2].heading}}</h1>
                     <h2> {{options[2].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
-                <button type="button" class="btn btn-block poll-option option3" 
-                	ng-show="options[3]" ng-click="vote(3)">
+                <button type="button" class="btn btn-block poll-option option3" ng-show="options[3]" ng-click="vote(3)">
                     <h1>{{options[3].heading}}</h1>
                     <h2> {{options[3].text}}</h2>
                 </button>
@@ -74,32 +77,26 @@
         </div>
         <div class="row poll-row">
             <div class="col-xs-4 poll-row">
-                <button type="button " class="btn btn-block poll-option option4" 
-                	ng-show="options[4]" ng-click="vote(4)">
+                <button type="button " class="btn btn-block poll-option option4" ng-show="options[4]" ng-click="vote(4)">
                     <h1>{{options[4].heading}}</h1>
                     <h2> {{options[4].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
-                <button type="button" class="btn btn-block poll-option option5" 
-                	ng-show="options[5]" ng-click="vote(5)">
+                <button type="button" class="btn btn-block poll-option option5" ng-show="options[5]" ng-click="vote(5)">
                     <h1>{{options[5].heading}}</h1>
                     <h2> {{options[5].text}}</h2>
                 </button>
             </div>
             <div class="col-xs-4 poll-option">
-                <button type="button" class="btn btn-block poll-option option6" 
-                	ng-show="options[6]" ng-click="vote(6)">
+                <button type="button" class="btn btn-block poll-option option6" ng-show="options[6]" ng-click="vote(6)">
                     <h1>{{options[6].heading}}</h1>
                     <h2> {{options[6].text}}</h2>
                 </button>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="./pollCtrl.js"></script>
+    
 </body>
 
 </html>
