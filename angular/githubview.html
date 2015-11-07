@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="githubCtrl.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="githubCtrl">
+    <h1>github viewer</h1> {{username}}
+    <form name="searchUser" ng-submit="search(username)">
+        <input type="search" required placeholder="user name" ng-model="username">
+        <input type="submit" value="Search">
+    </form>
+    <div>
+        {{error}}
+        <h2>{{user.name}}</h2>
+        <img ng-src="{{user.avatar_url}}" title="{{user.name}}" width="200" ng-show="user">
+        <!-- the gravatar_id might be empty, even for user like angular
+        <img ng-src="http://www.gravatar.com/avatar/{{user.gravatar_id}}"> -->
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{user.name}}'s Repositories</div>
+        <table class="table">
+            <thread>
+                <tr>
+                    <td>Name</td>
+                    <td>Language</td>
+                    <td>Forks</td>
+                    <td>Stars</td>
+                </tr>
+            </thread>
+            <tbody>
+                <tr ng-repeat="repo in repos">
+                    <td>{{repo.name}}</td>
+                    <td>{{repo.language}}</td>
+                    <td>{{repo.forks}}</td>
+
+                    <td>{{repo.stargazer_count}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+
+</html>
