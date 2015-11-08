@@ -1,0 +1,19 @@
+<html>
+
+<head>
+  <!-- to avoid Uncaught SyntaxError: Unexpected token ILLEGAL: -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF8">
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+</head>
+
+<body ng-app>
+  Hello
+  <!-- this is to demostrate to include another fild
+  the 'included.html' means the file included.html literally
+   -->
+  <div ng-include src="'included.html'" />
+  
+</body>
+
+</html>

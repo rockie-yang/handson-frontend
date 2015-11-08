@@ -4,6 +4,8 @@
     <!-- to avoid Uncaught SyntaxError: Unexpected token ILLEGAL: -->
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    
     <style type="text/css">
     body {
         padding-top: 10px;
@@ -22,16 +24,8 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
-    <script type="text/javascript" src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
     <script type="text/javascript">
-    // define an anonymous function and invoke it immediatly
-    // to avoid create any global variable
-    // it has to wrapped in a parenthess 
-    // so the simplest is (function(){}())
     (function() {
         var worker = function() {
             var closer = "something"
