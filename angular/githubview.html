@@ -1,49 +1,80 @@
 <html>
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF8">
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
-    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="githubCtrl.js"></script>
+  <meta http-equiv="content-type" content="text/html; charset=UTF8">
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="githubCtrl.js"></script>
 </head>
 
 <body ng-app="app" ng-controller="githubCtrl">
-    <h1>github viewer</h1> {{username}}
-    <form name="searchUser" ng-submit="search(username)">
-        <input type="search" required placeholder="user name" ng-model="username">
-        <input type="submit" value="Search">
+  <div class="container">
+    <h1>github viewer</h1>
+    <div ng-show="leftTime != 0">{{leftTime}}</div>
+    <form name="searchUser" ng-submit="search()">
+      <input type="search" required placeholder="user name" ng-model="username">
+      <input type="submit" value="Search">
     </form>
-    <div>
-        {{error}}
-        <h2>{{user.name}}</h2>
-        <img ng-src="{{user.avatar_url}}" title="{{user.name}}" width="200" ng-show="user">
-        <!-- the gravatar_id might be empty, even for user like angular
+    <div>{{error}}</div>
+    <img ng-src="{{user.avatar_url}}" title="{{user.name}}" width="50" ng-show="user">
+    <!-- the gravatar_id might be empty, even for user like angular
         <img ng-src="http://www.gravatar.com/avatar/{{user.gravatar_id}}"> -->
+  </div>
+  <div class="container">
+    <div class="panel panel-default" ng-show="repos">
+      <div class="panel-heading">{{user.name}}'s Repositories</div>
+      <table class="table">
+        <thread>
+          <tr>
+            <th>
+              <div ng-click="orderByField='name'; reverseSort=!reverseSort">Name
+                <span ng-show="orderByField=='name'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+                </span>
+              </div>
+            </th>
+            <th>
+              <div ng-click="orderByField='language'; reverseSort=!reverseSort">Language
+                <span ng-show="orderByField=='language'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+                </span>
+                </span>
+              </div>
+            </th>
+            <th>
+              <div ng-click="orderByField='forks'; reverseSort=!reverseSort">Forks
+                <span ng-show="orderByField=='forks'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+                </span>
+              </div>
+            </th>
+            <th>
+              <div ng-click="orderByField='stargazers_count'; reverseSort=!reverseSort">Stars
+                <span class="glyphicon glyphicon-star"></span>
+                <span ng-show="orderByField=='stargazers_count'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thread>
+        <tbody>
+          <tr ng-repeat="repo in repos | orderBy:orderByField:reverseSort ">
+            <td>{{repo.name}}</td>
+            <td>{{repo.language}}</td>
+            <td>{{repo.forks | number}}</td>
+            <td>{{repo.stargazers_count | number}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">{{user.name}}'s Repositories</div>
-        <table class="table">
-            <thread>
-                <tr>
-                    <td>Name</td>
-                    <td>Language</td>
-                    <td>Forks</td>
-                    <td>Stars</td>
-                </tr>
-            </thread>
-            <tbody>
-                <tr ng-repeat="repo in repos">
-                    <td>{{repo.name}}</td>
-                    <td>{{repo.language}}</td>
-                    <td>{{repo.forks}}</td>
-
-                    <td>{{repo.stargazer_count}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  </div>
+  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 
 </html>
