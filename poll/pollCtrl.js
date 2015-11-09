@@ -32,7 +32,7 @@
                     $scope.options[id] = option
                 }
 
-                $scope.lastVoteTime = new Date();
+                $scope.lastVoteTime = new Date() - 10000;
 
             }, onError);
         }
@@ -57,6 +57,7 @@
                 $http.post(votesUrl, data).then(function(response) {
                     console.log(response);
                     $scope.lastVoteTime = now
+                    $scope.thanks = "Thanks for voting";
                 })
             } else {
                 console.log('ignore too frequent vote');
