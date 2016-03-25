@@ -3,11 +3,11 @@
     var ctrl = function($scope, $http) {
         $scope.message = "from angular code";
 
-        var url = "https://api.github.com/users/rockie-yang";
+        var url = "https://api.github.com/users/rockiey";
         $http.get(url).success(function(response) {
             $scope.userProfile = response;
         })
-        var urlRepos = 'https://api.github.com/users/rockie-yang/repos';
+        var urlRepos = 'https://api.github.com/users/rockiey/repos';
 
         var onSuccess = function(response) {
             $scope.repos = response;
